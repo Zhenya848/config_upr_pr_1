@@ -1,0 +1,14 @@
+# Variant 4 demonstration script.
+ls
+cd home
+ls
+cat welcome.txt
+head -n 3 welcome.txt
+who
+head -n 2 docs/readme.txt
+touch created.txt
+ls
+unknown-command
+cd missing
+ls
+exit

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vfs type="dir" name="/">
+  <node type="dir" name="home">
+    <node type="file" name="hello.txt">Hello from VFS.</node>
+  </node>
+</vfs>

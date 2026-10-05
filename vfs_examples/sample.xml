@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vfs type="dir" name="/">
+  <node type="dir" name="home">
+    <node type="file" name="welcome.txt">Welcome to the TypeScript-like shell idea, implemented in C#.
+This is an in-memory virtual file.</node>
+    <node type="dir" name="docs">
+      <node type="file" name="readme.txt">Line 1
+Line 2
+Line 3
+Line 4
+Line 5
+Line 6</node>
+    </node>
+  </node>
+  <node type="dir" name="etc">
+    <node type="file" name="motd.txt">Variant 4 shell emulator.</node>
+  </node>
+</vfs>

@@ -1,0 +1,3 @@
+# Values from this file have priority over CLI values.
+vfs_path = "vfs_examples/sample.xml"
+script_path = "scripts/start.txt"

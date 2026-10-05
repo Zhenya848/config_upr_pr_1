@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vfs type="dir" name="/">
+  <node type="dir" name="level1">
+    <node type="dir" name="level2">
+      <node type="dir" name="level3">
+        <node type="file" name="deep.txt">Deep VFS file.</node>
+      </node>
+    </node>
+  </node>
+</vfs>
