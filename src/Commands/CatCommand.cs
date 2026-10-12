@@ -5,21 +5,55 @@ namespace ShellEmulator.Commands;
 
 public sealed class CatCommand : ICommand
 {
-    public CommandResult Execute(VirtualFileSystem vfs, string[] args)
+    public CommandResult Execute(
+        VirtualFileSystem vfs,
+        string[] args)
     {
-        if (args.Length != 1) 
-            throw new ArgumentException("cat requires exactly one argument");
-        
-        var file = PathHelper.RequireNode(vfs, args[0]);
-        
-        if (file.IsDirectory) 
-            throw new ArgumentException("cat cannot read a directory");
-        
-        Console.Write(file.Content);
-        
-        if (!file.Content.EndsWith('\n')) 
-            Console.WriteLine();
-        
-        return CommandResult.Ok();
+        if (args.Length == 0)
+        {
+            throw new ArgumentException(
+                "cat: missing operand");
+        }
+
+        var hasErrors = false;
+
+        foreach (var path in args)
+        {
+            try
+            {
+                var node = PathHelper.RequireNode(vfs, path);
+
+                if (node.IsDirectory)
+                {
+                    Console.Error.WriteLine(
+                        $"cat: {path}: Is a directory");
+
+                    hasErrors = true;
+                    continue;
+                }
+
+                node.AccessTime = DateTimeOffset.UtcNow;
+
+                Console.Write(node.Content);
+            }
+            catch (FileNotFoundException)
+            {
+                Console.Error.WriteLine(
+                    $"cat: {path}: No such file or directory");
+
+                hasErrors = true;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.Error.WriteLine(
+                    $"cat: {path}: {ex.Message}");
+
+                hasErrors = true;
+            }
+        }
+
+        return hasErrors
+            ? CommandResult.Fail()
+            : CommandResult.Ok();
     }
 }
